@@ -16,7 +16,7 @@ public class StickerAccountHolderEntity implements Serializable {
   @SequenceGenerator(name = "STICKER_ACCOUNT_HOLDER_ID_GENERATOR")
   @GeneratedValue(strategy = GenerationType.SEQUENCE,
       generator = "STICKER_ACCOUNT_HOLDER_ID_GENERATOR")
-  private long id;
+  private Long id;
 
   @Column(name = "sticker_id")
   private BigDecimal stickerId;
@@ -32,11 +32,11 @@ public class StickerAccountHolderEntity implements Serializable {
 
   public StickerAccountHolderEntity() {}
 
-  public long getId() {
+  public Long getId() {
     return this.id;
   }
 
-  public void setId(long id) {
+  public void setId(Long id) {
     this.id = id;
   }
 

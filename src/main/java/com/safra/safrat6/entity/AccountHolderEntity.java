@@ -1,9 +1,17 @@
 package com.safra.safrat6.entity;
 
 import java.io.Serializable;
-import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.List;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 
 
 @Entity
@@ -15,7 +23,7 @@ public class AccountHolderEntity implements Serializable {
   @Id
   @SequenceGenerator(name = "ACCOUNT_HOLDER_ID_GENERATOR")
   @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ACCOUNT_HOLDER_ID_GENERATOR")
-  private long id;
+  private Long id;
 
   @Column(name = "account_number")
   private String accountNumber;
@@ -46,11 +54,11 @@ public class AccountHolderEntity implements Serializable {
 
   public AccountHolderEntity() {}
 
-  public long getId() {
+  public Long getId() {
     return this.id;
   }
 
-  public void setId(long id) {
+  public void setId(Long id) {
     this.id = id;
   }
 
