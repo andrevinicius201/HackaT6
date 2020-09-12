@@ -1,6 +1,5 @@
 package com.safra.safrat6.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -36,8 +35,7 @@ public class PrizeController {
   @GetMapping(value = "")
   public ResponseEntity<Object> getPrizes() {
     try {
-      List<Prize> prizes = new ArrayList<>();
-      // TODO
+      List<Prize> prizes = prizeService.getPrizes();
       return new ResponseEntity<>(prizes, HttpStatus.OK);
     } catch (Exception e) {
       return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);

@@ -79,4 +79,8 @@ public class PrizeService {
     return convertedFile;
   }
 
+  public List<Prize> getPrizes() {
+    return prizeMapper.toModel(prizeRepository.findAll());
+  }
+
 }
