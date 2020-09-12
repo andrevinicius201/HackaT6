@@ -16,13 +16,7 @@ public class StickerEntity implements Serializable {
   @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "STICKERS_ID_GENERATOR")
   private Long id;
 
-  @Column(name = "columns_quantity")
-  private Integer columnsQuantity;
-
   private Integer piece;
-
-  @Column(name = "rows_quantity")
-  private Integer rowsQuantity;
 
   // bi-directional many-to-one association to StickerAccountEntity
   @OneToMany(mappedBy = "sticker")
@@ -42,28 +36,12 @@ public class StickerEntity implements Serializable {
     this.id = id;
   }
 
-  public Integer getColumnsQuantity() {
-    return this.columnsQuantity;
-  }
-
-  public void setColumnsQuantity(Integer columnsQuantity) {
-    this.columnsQuantity = columnsQuantity;
-  }
-
   public Integer getPiece() {
     return this.piece;
   }
 
   public void setPiece(Integer piece) {
     this.piece = piece;
-  }
-
-  public Integer getRowsQuantity() {
-    return this.rowsQuantity;
-  }
-
-  public void setRowsQuantity(Integer rowsQuantity) {
-    this.rowsQuantity = rowsQuantity;
   }
 
   public List<StickerAccountEntity> getStickerAccounts() {

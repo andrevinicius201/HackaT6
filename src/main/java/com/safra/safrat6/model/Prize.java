@@ -11,42 +11,71 @@ public class Prize {
   private BigDecimal value;
   private List<Sticker> stickers;
   private List<Account> accounts;
-  
+  private Integer rowsQuantity;
+  private Integer columnsQuantity;
+
   public Long getId() {
     return id;
   }
+
   public void setId(Long id) {
     this.id = id;
   }
+
   public String getDescription() {
     return description;
   }
+
   public void setDescription(String description) {
     this.description = description;
   }
+
   public String getImageUrl() {
     return imageUrl;
   }
+
   public void setImageUrl(String imageUrl) {
     this.imageUrl = imageUrl;
   }
+
   public BigDecimal getValue() {
     return value;
   }
+
   public void setValue(BigDecimal value) {
     this.value = value;
   }
+
   public List<Sticker> getStickers() {
     return stickers;
   }
+
   public void setStickers(List<Sticker> stickers) {
     this.stickers = stickers;
   }
+
   public List<Account> getAccounts() {
     return accounts;
   }
+
   public void setAccounts(List<Account> accounts) {
     this.accounts = accounts;
+  }
+
+  public Integer getRowsQuantity() {
+    return rowsQuantity;
+  }
+
+  public void setRowsQuantity(Integer rowsQuantity) {
+    this.rowsQuantity = rowsQuantity;
+  }
+
+  public Integer getColumnsQuantity() {
+    return columnsQuantity;
+  }
+
+  public void setColumnsQuantity(Integer columnsQuantity) {
+    this.columnsQuantity = columnsQuantity;
   }
 
 }
