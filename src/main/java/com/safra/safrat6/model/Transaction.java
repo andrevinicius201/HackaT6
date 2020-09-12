@@ -1,5 +1,8 @@
 package com.safra.safrat6.model;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Transaction {
 
   private String accountId;
