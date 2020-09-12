@@ -2,6 +2,7 @@ package com.safra.safrat6.entity;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import java.util.List;
 
 
 @Entity
@@ -22,6 +23,10 @@ public class StickerEntity implements Serializable {
 
   @Column(name = "rows_quantity")
   private Integer rowsQuantity;
+
+  // bi-directional many-to-one association to StickerAccountEntity
+  @OneToMany(mappedBy = "sticker")
+  private List<StickerAccountEntity> stickerAccounts;
 
   // bi-directional many-to-one association to PrizeEntity
   @ManyToOne
@@ -59,6 +64,28 @@ public class StickerEntity implements Serializable {
 
   public void setRowsQuantity(Integer rowsQuantity) {
     this.rowsQuantity = rowsQuantity;
+  }
+
+  public List<StickerAccountEntity> getStickerAccounts() {
+    return this.stickerAccounts;
+  }
+
+  public void setStickerAccounts(List<StickerAccountEntity> stickerAccounts) {
+    this.stickerAccounts = stickerAccounts;
+  }
+
+  public StickerAccountEntity addStickerAccount(StickerAccountEntity stickerAccount) {
+    getStickerAccounts().add(stickerAccount);
+    stickerAccount.setSticker(this);
+
+    return stickerAccount;
+  }
+
+  public StickerAccountEntity removeStickerAccount(StickerAccountEntity stickerAccount) {
+    getStickerAccounts().remove(stickerAccount);
+    stickerAccount.setSticker(null);
+
+    return stickerAccount;
   }
 
   public PrizeEntity getPrize() {
