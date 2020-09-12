@@ -1,7 +1,9 @@
 package com.safra.safrat6.model;
 
 import java.time.LocalDateTime;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Invite {
 
   private Long id;

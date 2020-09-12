@@ -1,9 +1,17 @@
 package com.safra.safrat6.entity;
 
 import java.io.Serializable;
-import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.List;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 
 @Entity
@@ -13,8 +21,7 @@ public class PrizeEntity implements Serializable {
   private static final long serialVersionUID = 1L;
 
   @Id
-  @SequenceGenerator(name = "PRIZES_ID_GENERATOR")
-  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "PRIZES_ID_GENERATOR")
+  @GeneratedValue(strategy = GenerationType.AUTO)
   private Long id;
 
   private String description;
@@ -23,11 +30,21 @@ public class PrizeEntity implements Serializable {
 
   private BigDecimal price;
 
+  @Column(name = "columns_quantity")
+  private Integer columnsQuantity;
+
+  @Column(name = "rows_quantity")
+  private Integer rowsQuantity;
+
   // bi-directional many-to-one association to StickerEntity
-  @OneToMany(mappedBy = "prize")
+  @OneToMany(mappedBy = "prize", cascade = CascadeType.ALL)
   private List<StickerEntity> stickers;
 
   public PrizeEntity() {}
+
+  public PrizeEntity(Long id) {
+    this.id = id;
+  }
 
   public Long getId() {
     return this.id;
@@ -81,6 +98,22 @@ public class PrizeEntity implements Serializable {
     sticker.setPrize(null);
 
     return sticker;
+  }
+
+  public Integer getColumnsQuantity() {
+    return columnsQuantity;
+  }
+
+  public void setColumnsQuantity(Integer columnsQuantity) {
+    this.columnsQuantity = columnsQuantity;
+  }
+
+  public Integer getRowsQuantity() {
+    return rowsQuantity;
+  }
+
+  public void setRowsQuantity(Integer rowsQuantity) {
+    this.rowsQuantity = rowsQuantity;
   }
 
 }

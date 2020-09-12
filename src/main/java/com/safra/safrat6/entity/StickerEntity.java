@@ -1,8 +1,15 @@
 package com.safra.safrat6.entity;
 
 import java.io.Serializable;
-import javax.persistence.*;
 import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 
 @Entity
@@ -12,17 +19,10 @@ public class StickerEntity implements Serializable {
   private static final long serialVersionUID = 1L;
 
   @Id
-  @SequenceGenerator(name = "STICKERS_ID_GENERATOR")
-  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "STICKERS_ID_GENERATOR")
+  @GeneratedValue(strategy = GenerationType.AUTO)
   private Long id;
 
-  @Column(name = "columns_quantity")
-  private Integer columnsQuantity;
-
   private Integer piece;
-
-  @Column(name = "rows_quantity")
-  private Integer rowsQuantity;
 
   // bi-directional many-to-one association to StickerAccountEntity
   @OneToMany(mappedBy = "sticker")
@@ -42,28 +42,12 @@ public class StickerEntity implements Serializable {
     this.id = id;
   }
 
-  public Integer getColumnsQuantity() {
-    return this.columnsQuantity;
-  }
-
-  public void setColumnsQuantity(Integer columnsQuantity) {
-    this.columnsQuantity = columnsQuantity;
-  }
-
   public Integer getPiece() {
     return this.piece;
   }
 
   public void setPiece(Integer piece) {
     this.piece = piece;
-  }
-
-  public Integer getRowsQuantity() {
-    return this.rowsQuantity;
-  }
-
-  public void setRowsQuantity(Integer rowsQuantity) {
-    this.rowsQuantity = rowsQuantity;
   }
 
   public List<StickerAccountEntity> getStickerAccounts() {
