@@ -7,7 +7,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
@@ -36,10 +35,9 @@ public class InviteEntity implements Serializable {
   @Column(name = "made_effective")
   private Boolean madeEffective;
 
-  // bi-directional many-to-one association to AccountHolderEntity
+  // bi-directional many-to-one association to AccountEntity
   @ManyToOne
-  @JoinColumn(name = "account_holder_id")
-  private AccountHolderEntity accountHolder;
+  private AccountEntity account;
 
   public InviteEntity() {}
 
@@ -60,7 +58,7 @@ public class InviteEntity implements Serializable {
   }
 
   public LocalDateTime getInvitationDate() {
-    return invitationDate;
+    return this.invitationDate;
   }
 
   public void setInvitationDate(LocalDateTime invitationDate) {
@@ -83,12 +81,12 @@ public class InviteEntity implements Serializable {
     this.madeEffective = madeEffective;
   }
 
-  public AccountHolderEntity getAccountHolder() {
-    return this.accountHolder;
+  public AccountEntity getAccount() {
+    return this.account;
   }
 
-  public void setAccountHolder(AccountHolderEntity accountHolder) {
-    this.accountHolder = accountHolder;
+  public void setAccount(AccountEntity account) {
+    this.account = account;
   }
 
 }

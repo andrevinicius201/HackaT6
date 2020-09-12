@@ -7,14 +7,14 @@ import java.util.List;
 
 
 @Entity
-@Table(name = "prize")
+@Table(name = "prizes")
 @NamedQuery(name = "PrizeEntity.findAll", query = "SELECT p FROM PrizeEntity p")
 public class PrizeEntity implements Serializable {
   private static final long serialVersionUID = 1L;
 
   @Id
-  @SequenceGenerator(name = "PRIZE_ID_GENERATOR")
-  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "PRIZE_ID_GENERATOR")
+  @SequenceGenerator(name = "PRIZES_ID_GENERATOR")
+  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "PRIZES_ID_GENERATOR")
   private Long id;
 
   private String description;
