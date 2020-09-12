@@ -1,52 +1,50 @@
 package com.safra.safrat6.model;
 
-public class Sticker {
-	
-	private Integer prizeId;
-	private Integer accountHolderId;
-	private String urlImage;
-	private int rowsQuantity;
-	private int columnsQuantity;
-	private int piece;
-	
+import java.util.List;
 
-	public Integer getPrizeId() {
-		return prizeId;
-	}
-	public void setPrizeId(Integer prizeId) {
-		this.prizeId = prizeId;
-	}
-	public Integer getAccountHolderId() {
-		return accountHolderId;
-	}
-	public void setAccountHolderId(Integer accountHolderId) {
-		this.accountHolderId = accountHolderId;
-	}
-	public String getUrlImage() {
-		return urlImage;
-	}
-	public void setUrlImage(String urlImage) {
-		this.urlImage = urlImage;
-	}
-	public int getRowsQuantity() {
-		return rowsQuantity;
-	}
-	public void setRowsQuantity(int rowsQuantity) {
-		this.rowsQuantity = rowsQuantity;
-	}
-	public int getColumnsQuantity() {
-		return columnsQuantity;
-	}
-	public void setColumnsQuantity(int columnsQuantity) {
-		this.columnsQuantity = columnsQuantity;
-	}
-	public int getPiece() {
-		return piece;
-	}
-	public void setPiece(int piece) {
-		this.piece = piece;
-	}
-	
-	
+public class Sticker {
+
+  private Long id;
+  private List<Account> accounts;
+  private Prize prize;
+  private Integer rowsQuantity;
+  private Integer columnsQuantity;
+  private Integer piece;
+  public Long getId() {
+    return id;
+  }
+  public void setId(Long id) {
+    this.id = id;
+  }
+  public List<Account> getAccounts() {
+    return accounts;
+  }
+  public void setAccounts(List<Account> accounts) {
+    this.accounts = accounts;
+  }
+  public Prize getPrize() {
+    return prize;
+  }
+  public void setPrize(Prize prize) {
+    this.prize = prize;
+  }
+  public Integer getRowsQuantity() {
+    return rowsQuantity;
+  }
+  public void setRowsQuantity(Integer rowsQuantity) {
+    this.rowsQuantity = rowsQuantity;
+  }
+  public Integer getColumnsQuantity() {
+    return columnsQuantity;
+  }
+  public void setColumnsQuantity(Integer columnsQuantity) {
+    this.columnsQuantity = columnsQuantity;
+  }
+  public Integer getPiece() {
+    return piece;
+  }
+  public void setPiece(Integer piece) {
+    this.piece = piece;
+  }
 
 }
