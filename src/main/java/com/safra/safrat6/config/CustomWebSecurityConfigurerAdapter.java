@@ -30,8 +30,8 @@ public class CustomWebSecurityConfigurerAdapter extends WebSecurityConfigurerAda
   @Override
   protected void configure(HttpSecurity http) throws Exception {
     http.authorizeRequests()
-        .antMatchers("/v2/api-docs", "/swagger-resources/configuration/ui", "/swagger-resources",
-            "/swagger-resources/configuration/security", "/swagger-ui.html", "/webjars/**")
+        .antMatchers("/v3/api-docs/**", "/swagger-ui.html", "/swagger-ui/**",
+            "/swagger-resources/**", "/swagger-resources")
         .permitAll().anyRequest().authenticated().and().httpBasic().and().csrf().disable();
   }
 
