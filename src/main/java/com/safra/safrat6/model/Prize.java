@@ -2,7 +2,10 @@ package com.safra.safrat6.model;
 
 import java.math.BigDecimal;
 import java.util.List;
+import org.springframework.web.multipart.MultipartFile;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Prize {
 
   private Long id;
@@ -13,6 +16,7 @@ public class Prize {
   private List<Account> accounts;
   private Integer rowsQuantity;
   private Integer columnsQuantity;
+  private MultipartFile file;
 
   public Long getId() {
     return id;
@@ -76,6 +80,14 @@ public class Prize {
 
   public void setColumnsQuantity(Integer columnsQuantity) {
     this.columnsQuantity = columnsQuantity;
+  }
+
+  public MultipartFile getFile() {
+    return file;
+  }
+
+  public void setFile(MultipartFile file) {
+    this.file = file;
   }
 
 }

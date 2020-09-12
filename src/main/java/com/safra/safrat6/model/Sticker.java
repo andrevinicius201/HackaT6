@@ -1,13 +1,19 @@
 package com.safra.safrat6.model;
 
 import java.util.List;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Sticker {
 
   private Long id;
   private List<Account> accounts;
   private Prize prize;
   private Integer piece;
+
+  public Sticker(Integer piece) {
+    this.piece = piece;
+  }
 
   public Long getId() {
     return id;
