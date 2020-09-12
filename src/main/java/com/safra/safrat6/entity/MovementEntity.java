@@ -1,10 +1,20 @@
 package com.safra.safrat6.entity;
 
 import java.io.Serializable;
-import javax.persistence.*;
 import java.math.BigDecimal;
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.List;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 
 
 @Entity
@@ -16,9 +26,9 @@ public class MovementEntity implements Serializable {
   @Id
   @SequenceGenerator(name = "MOVEMENTS_ID_GENERATOR")
   @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "MOVEMENTS_ID_GENERATOR")
-  private long id;
+  private Long id;
 
-  private Timestamp date;
+  private LocalDateTime date;
 
   private String description;
 
@@ -41,19 +51,19 @@ public class MovementEntity implements Serializable {
 
   public MovementEntity() {}
 
-  public long getId() {
+  public Long getId() {
     return this.id;
   }
 
-  public void setId(long id) {
+  public void setId(Long id) {
     this.id = id;
   }
 
-  public Timestamp getDate() {
-    return this.date;
+  public LocalDateTime getDate() {
+    return date;
   }
 
-  public void setDate(Timestamp date) {
+  public void setDate(LocalDateTime date) {
     this.date = date;
   }
 

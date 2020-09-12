@@ -1,8 +1,17 @@
 package com.safra.safrat6.entity;
 
 import java.io.Serializable;
-import javax.persistence.*;
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 
 
 @Entity
@@ -14,12 +23,12 @@ public class InviteEntity implements Serializable {
   @Id
   @SequenceGenerator(name = "INVITES_ID_GENERATOR")
   @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "INVITES_ID_GENERATOR")
-  private long id;
+  private Long id;
 
   private String description;
 
   @Column(name = "invitation_date")
-  private Timestamp invitationDate;
+  private LocalDateTime invitationDate;
 
   @Column(name = "invited_email")
   private String invitedEmail;
@@ -34,11 +43,11 @@ public class InviteEntity implements Serializable {
 
   public InviteEntity() {}
 
-  public long getId() {
+  public Long getId() {
     return this.id;
   }
 
-  public void setId(long id) {
+  public void setId(Long id) {
     this.id = id;
   }
 
@@ -50,11 +59,11 @@ public class InviteEntity implements Serializable {
     this.description = description;
   }
 
-  public Timestamp getInvitationDate() {
-    return this.invitationDate;
+  public LocalDateTime getInvitationDate() {
+    return invitationDate;
   }
 
-  public void setInvitationDate(Timestamp invitationDate) {
+  public void setInvitationDate(LocalDateTime invitationDate) {
     this.invitationDate = invitationDate;
   }
 

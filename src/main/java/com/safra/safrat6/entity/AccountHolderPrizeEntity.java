@@ -15,7 +15,7 @@ public class AccountHolderPrizeEntity implements Serializable {
   @SequenceGenerator(name = "ACCOUNT_HOLDER_PRIZE_ID_GENERATOR")
   @GeneratedValue(strategy = GenerationType.SEQUENCE,
       generator = "ACCOUNT_HOLDER_PRIZE_ID_GENERATOR")
-  private long id;
+  private Long id;
 
   // bi-directional many-to-one association to AccountHolderEntity
   @ManyToOne
@@ -29,11 +29,11 @@ public class AccountHolderPrizeEntity implements Serializable {
 
   public AccountHolderPrizeEntity() {}
 
-  public long getId() {
+  public Long getId() {
     return this.id;
   }
 
-  public void setId(long id) {
+  public void setId(Long id) {
     this.id = id;
   }
 
