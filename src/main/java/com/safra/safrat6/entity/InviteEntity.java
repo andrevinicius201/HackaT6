@@ -9,7 +9,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 
@@ -20,8 +19,7 @@ public class InviteEntity implements Serializable {
   private static final long serialVersionUID = 1L;
 
   @Id
-  @SequenceGenerator(name = "INVITES_ID_GENERATOR")
-  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "INVITES_ID_GENERATOR")
+  @GeneratedValue(strategy = GenerationType.AUTO)
   private Long id;
 
   private String description;
