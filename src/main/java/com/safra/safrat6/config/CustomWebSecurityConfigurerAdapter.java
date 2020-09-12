@@ -14,7 +14,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @Configuration
 @EnableWebSecurity
 public class CustomWebSecurityConfigurerAdapter extends WebSecurityConfigurerAdapter {
-  
+
   @Value("${app.basicUser}")
   private String user;
 
@@ -29,8 +29,11 @@ public class CustomWebSecurityConfigurerAdapter extends WebSecurityConfigurerAda
 
   @Override
   protected void configure(HttpSecurity http) throws Exception {
-    http.authorizeRequests().antMatchers("/swagger**").permitAll().anyRequest().authenticated()
-        .and().httpBasic();
+    http.authorizeRequests()
+        .antMatchers("/v2/api-docs", "/swagger-resources/configuration/ui", "/swagger-resources",
+            "/swagger-resources/configuration/security", "/swagger-ui.html", "/webjars/**", "/csrf",
+            "/")
+        .permitAll().anyRequest().authenticated().and().httpBasic().and().csrf().disable();
   }
 
   @Bean
