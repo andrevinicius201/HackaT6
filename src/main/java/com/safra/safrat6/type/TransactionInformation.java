@@ -1,5 +1,6 @@
 package com.safra.safrat6.type;
 
+
 public enum TransactionInformation {
 	PURCHASE,
 	DEBIT,
@@ -10,5 +11,6 @@ public enum TransactionInformation {
 	LOAN,
 	MEMBER_GET_MEMBER,
 	NEW_ACCOUNT,
-	INVESTMENT
+	INVESTMENT;
+	
 }

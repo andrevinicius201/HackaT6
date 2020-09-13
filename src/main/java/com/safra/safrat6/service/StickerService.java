@@ -1,42 +1,19 @@
 package com.safra.safrat6.service;
 
-import java.util.List;
-import java.util.Random;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.safra.safrat6.entity.PrizeEntity;
-import com.safra.safrat6.entity.StickerEntity;
+import com.safra.safrat6.model.Transaction;
 import com.safra.safrat6.repository.PrizeRepository;
-import com.safra.safrat6.repository.StickerRepository;
 import com.safra.safrat6.type.TransactionInformation;
 
 @Service
 public class StickerService {
 
-  @Autowired private PrizeRepository prizeRepository;
-
-  @Autowired private StickerRepository stickerRepository;
-
-  private void distributeStickers(int idPrize, int accountId, int transactionId, int quantity) {
-    PrizeEntity prize = prizeRepository.findById(new Long(idPrize)).get();
-    List<StickerEntity> stickers = prize.getStickers();
-
-    Random rand = new Random();
-    for (int i = 0; i < quantity; i++) {
-      int index = rand.nextInt(stickers.size());
-
-      StickerEntity sticker = stickers.get(index);
-      
-      // TODO associate a sticker to account
-    }
-  }
+  @Autowired private AccountService accountService;
 
   public void distributeStickers(
-      int accountId, int transactionId, TransactionInformation transactionInformation) {
-    //	  int idPrize = prizeRepository.getPrizeByAccount(accountId).id;
-    int idPrize = 1;
+      Transaction transaction, TransactionInformation transactionInformation) {
     int quantity = 0;
     if (transactionInformation.equals(TransactionInformation.PURCHASE)) {
 
@@ -78,6 +55,7 @@ public class StickerService {
 
       quantity = 5;
     }
-    distributeStickers(idPrize, accountId, transactionId, quantity);
+    transaction.setStickersQuantity(quantity);
+    accountService.postTransaction(transaction.getAccountId(), transaction);
   }
 }
