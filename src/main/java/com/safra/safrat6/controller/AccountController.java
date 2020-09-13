@@ -61,8 +61,7 @@ public class AccountController {
   @GetMapping(value = "/{id}/stickers")
   public ResponseEntity<Object> getStickers(@PathVariable("id") String id) {
     try {
-      List<Sticker> stickers = new ArrayList<>();
-      // TODO
+      List<Sticker> stickers = accountService.getStickers(id);
       return new ResponseEntity<>(stickers, HttpStatus.OK);
     } catch (Exception e) {
       return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);

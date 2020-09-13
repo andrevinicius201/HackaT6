@@ -1,16 +1,22 @@
 package com.safra.safrat6.service;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import com.safra.safrat6.entity.AccountEntity;
 import com.safra.safrat6.entity.AccountPrizeEntity;
 import com.safra.safrat6.entity.AccountPrizeStatusEntity;
 import com.safra.safrat6.entity.PrizeEntity;
 import com.safra.safrat6.model.Account;
 import com.safra.safrat6.model.Prize;
+import com.safra.safrat6.model.Sticker;
 import com.safra.safrat6.repository.AccountPrizeRepository;
 import com.safra.safrat6.repository.AccountRepository;
 import com.safra.safrat6.service.mapper.AccountMapper;
+import com.safra.safrat6.service.mapper.PrizeMapper;
+import com.safra.safrat6.service.mapper.StickerMapper;
 
 @Service
 public class AccountService {
@@ -23,6 +29,12 @@ public class AccountService {
 
   @Autowired
   private AccountMapper accountMapper;
+  
+  @Autowired
+  private StickerMapper stickerMapper;
+  
+  @Autowired
+  private PrizeMapper prizeMapper;
 
   public Account getAccount(String id) {
     String agency = id.substring(0, 4);
@@ -33,13 +45,27 @@ public class AccountService {
 
   public Prize postPrize(String id, Prize prize) {
     AccountPrizeEntity entityToSave = new AccountPrizeEntity();
-    entityToSave.setAccount(accountRepository.findByAgencyNumberAndAccountNumber(id.substring(0, 4), id.substring(4, id.length())));
+    entityToSave.setAccount(accountRepository.findByAgencyNumberAndAccountNumber(id.substring(0, 4),
+        id.substring(4, id.length())));
     entityToSave.setPrize(new PrizeEntity(prize.getId()));
     entityToSave.setAccountPrizeStatus(new AccountPrizeStatusEntity(1L));
     accountPrizeRepository.save(entityToSave);
     prize.setAccounts(Arrays.asList(this.getAccount(id)));
     prize.setStatus("Participando");
     return prize;
+  }
+
+  public List<Sticker> getStickers(String id) {
+    AccountEntity entity = accountRepository.findByAgencyNumberAndAccountNumber(id.substring(0, 4),
+        id.substring(4, id.length()));
+    List<Sticker> stickers = new ArrayList<>();
+    entity.getStickerAccounts().forEach(stickerAccount -> {
+      Sticker sticker = stickerMapper.toModel(stickerAccount.getSticker());
+      Prize prize = prizeMapper.toModel(stickerAccount.getSticker().getPrize());
+      sticker.setPrize(prize);
+      stickers.add(sticker);
+    });
+    return stickers;
   }
 
 }

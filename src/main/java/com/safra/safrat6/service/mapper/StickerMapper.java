@@ -21,4 +21,11 @@ public class StickerMapper {
     return entity;
   }
 
+  public Sticker toModel(StickerEntity entity) {
+    Sticker sticker = new Sticker();
+    sticker.setId(entity.getId());
+    sticker.setPiece(entity.getPiece());
+    return null;
+  }
+
 }
