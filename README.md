@@ -74,3 +74,5 @@ Devido ao tempo curto, não foi implementado JUnit na solução, mas é necessá
 
 Deve-se pensar em uma camada de LOGS para o ambiente.
 
+O desenvolvimento para IOS também deve ser considerado no roadmap com certa urgência. Apesar de a utilização do Flutter ser uma possibilidade e até uma preferência pessoal.
+
