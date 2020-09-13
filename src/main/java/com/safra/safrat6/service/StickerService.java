@@ -2,9 +2,7 @@ package com.safra.safrat6.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.safra.safrat6.model.Transaction;
-import com.safra.safrat6.repository.PrizeRepository;
 import com.safra.safrat6.type.TransactionInformation;
 
 @Service
