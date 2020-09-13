@@ -18,6 +18,7 @@ public class Prize {
   private Integer columnsQuantity;
   private MultipartFile file;
   private String status;
+  private BigDecimal stickerPrice;
 
   public Long getId() {
     return id;
@@ -97,6 +98,14 @@ public class Prize {
 
   public void setStatus(String status) {
     this.status = status;
+  }
+
+  public BigDecimal getStickerPrice() {
+    return stickerPrice;
+  }
+
+  public void setStickerPrice(BigDecimal stickerPrice) {
+    this.stickerPrice = stickerPrice;
   }
 
 }
