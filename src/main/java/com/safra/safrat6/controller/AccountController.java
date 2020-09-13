@@ -1,6 +1,5 @@
 package com.safra.safrat6.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -72,7 +71,7 @@ public class AccountController {
   public ResponseEntity<Object> postInvite(@Validated @RequestBody Invite invite,
       @PathVariable("id") String id) {
     try {
-      // TODO
+      invite = accountService.postInvite(invite, id);
       return new ResponseEntity<>(invite, HttpStatus.CREATED);
     } catch (Exception e) {
       return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
@@ -82,8 +81,7 @@ public class AccountController {
   @GetMapping(value = "/{id}/invites")
   public ResponseEntity<Object> getInvites(@PathVariable("id") String id) {
     try {
-      List<Invite> invites = new ArrayList<>();
-      // TODO
+      List<Invite> invites = accountService.getInvites(id);
       return new ResponseEntity<>(invites, HttpStatus.OK);
     } catch (Exception e) {
       return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
