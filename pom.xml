@@ -11,7 +11,7 @@
 	</parent>
 	<groupId>com.safra</groupId>
 	<artifactId>safra-t6</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.1</version>
 	<name>safra-t6</name>
 	<description>API </description>
 
