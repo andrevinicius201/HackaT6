@@ -17,4 +17,11 @@ public interface StickerRepository extends JpaRepository<StickerEntity, Long> {
   List<StickerEntity> findByAccountAndPrizeStatus(@Param("status") Long status,
       @Param("agencyNumber") String agencyNumber, @Param("accountNumber") String accountNumber);
 
+  @Query("select distinct s from StickerEntity s inner join s.prize as p "
+      + "inner join p.accountPrizes as ap inner join ap.account as a inner join s.stickerAccounts "
+      + "where a.agencyNumber = :agencyNumber and a.accountNumber = :accountNumber "
+      + "and p.id = :prizeId")
+  List<StickerEntity> findByAccountAndPrizeDistincPieces(@Param("agencyNumber") String agencyNumber,
+      @Param("accountNumber") String accountNumber, @Param("prizeId") Long prizeId);
+
 }

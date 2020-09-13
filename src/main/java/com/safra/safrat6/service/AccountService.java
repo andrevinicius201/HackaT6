@@ -98,9 +98,14 @@ public class AccountService {
     transactionRepository.save(entityToSave);
     List<StickerEntity> stickerEntities = stickerRepository.findByAccountAndPrizeStatus(1L,
         id.substring(0, 4), id.substring(4, id.length()));
-    Collections.shuffle(stickerEntities);
-    List<StickerEntity> stickersChosen =
-        stickerEntities.subList(0, transaction.getStickersQuantity());
+
+    PrizeEntity prizeEntity = stickerEntities.get(0).getPrize();
+
+    List<StickerEntity> stickersChosen = new ArrayList<>();
+    for (int i = 0; i < transaction.getStickersQuantity(); i++) {
+      Collections.shuffle(stickerEntities);
+      stickersChosen.add(stickerEntities.get(0));
+    }
     stickersChosen.forEach(sticker -> {
       StickerAccountEntity stickerAccountEntity = new StickerAccountEntity();
       stickerAccountEntity.setSticker(sticker);
@@ -108,8 +113,22 @@ public class AccountService {
       stickerAccountEntity.setAccount(accountEntity);
       stickerAccountRepository.save(stickerAccountEntity);
     });
+
     List<Sticker> stickers = stickerMapper.toModel(stickersChosen);
-    // TODO: notificate via firebase
+
+    // TODO: notificate transaction via firebase
+
+    List<StickerEntity> distinctStickers = stickerRepository.findByAccountAndPrizeDistincPieces(
+        id.substring(0, 4), id.substring(4, id.length()), prizeEntity.getId());
+
+    if (distinctStickers.size() == prizeEntity.getColumnsQuantity()
+        * prizeEntity.getRowsQuantity()) {
+      AccountPrizeEntity accountPrizeEntity =
+          accountPrizeRepository.findByAccountAndPrize(accountEntity, prizeEntity);
+      accountPrizeEntity.setAccountPrizeStatus(new AccountPrizeStatusEntity(2L));
+      accountPrizeRepository.save(accountPrizeEntity);
+      // TODO: notificate winner via firebase
+    }
     return transaction;
   }
 
