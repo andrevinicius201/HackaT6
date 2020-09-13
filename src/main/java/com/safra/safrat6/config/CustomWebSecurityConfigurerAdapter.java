@@ -36,7 +36,7 @@ public class CustomWebSecurityConfigurerAdapter extends WebSecurityConfigurerAda
     http.authorizeRequests()
         .antMatchers("/v3/api-docs/**", "/swagger-ui.html", "/swagger-ui/**",
             "/swagger-resources/**", "/swagger-resources")
-        .permitAll().anyRequest().authenticated().and().httpBasic().and().cors();
+        .permitAll().anyRequest().authenticated().and().httpBasic().and().csrf().disable();
   }
 
   @Bean
