@@ -6,24 +6,27 @@ import java.util.Collections;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import com.safra.safrat6.entity.AccountEntity;
 import com.safra.safrat6.entity.AccountPrizeEntity;
 import com.safra.safrat6.entity.AccountPrizeStatusEntity;
+import com.safra.safrat6.entity.InviteEntity;
 import com.safra.safrat6.entity.PrizeEntity;
 import com.safra.safrat6.entity.StickerAccountEntity;
 import com.safra.safrat6.entity.StickerEntity;
 import com.safra.safrat6.entity.TransactionEntity;
 import com.safra.safrat6.model.Account;
+import com.safra.safrat6.model.Invite;
 import com.safra.safrat6.model.Prize;
 import com.safra.safrat6.model.Sticker;
 import com.safra.safrat6.model.Transaction;
 import com.safra.safrat6.repository.AccountPrizeRepository;
 import com.safra.safrat6.repository.AccountRepository;
+import com.safra.safrat6.repository.InviteRepository;
 import com.safra.safrat6.repository.StickerAccountRepository;
 import com.safra.safrat6.repository.StickerRepository;
 import com.safra.safrat6.repository.TransactionRepository;
 import com.safra.safrat6.service.mapper.AccountMapper;
+import com.safra.safrat6.service.mapper.InviteMapper;
 import com.safra.safrat6.service.mapper.PrizeMapper;
 import com.safra.safrat6.service.mapper.StickerMapper;
 import com.safra.safrat6.service.mapper.TransactionMapper;
@@ -47,6 +50,9 @@ public class AccountService {
   private StickerAccountRepository stickerAccountRepository;
 
   @Autowired
+  private InviteRepository inviteRepository;
+
+  @Autowired
   private AccountMapper accountMapper;
 
   @Autowired
@@ -57,6 +63,9 @@ public class AccountService {
 
   @Autowired
   private TransactionMapper transactionMapper;
+
+  @Autowired
+  private InviteMapper inviteMapper;
 
   public Account getAccount(String id) {
     String agency = id.substring(0, 4);
@@ -130,6 +139,21 @@ public class AccountService {
       // TODO: notificate winner via firebase
     }
     return transaction;
+  }
+
+  public Invite postInvite(Invite invite, String accountId) {
+    InviteEntity entity = inviteMapper.toEntity(invite);
+    entity.setAccount(accountRepository.findByAgencyNumberAndAccountNumber(
+        accountId.substring(0, 4), accountId.substring(4, accountId.length())));
+    entity.setMadeEffective(false);
+    invite.setId(inviteRepository.save(entity).getId());
+    return invite;
+  }
+
+  public List<Invite> getInvites(String accountId) {
+    AccountEntity accountEntity = accountRepository.findByAgencyNumberAndAccountNumber(
+        accountId.substring(0, 4), accountId.substring(4, accountId.length()));
+    return inviteMapper.toModel(inviteRepository.findByAccount(accountEntity));
   }
 
 }
