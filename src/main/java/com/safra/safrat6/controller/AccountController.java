@@ -51,7 +51,7 @@ public class AccountController {
   public ResponseEntity<Object> postTransaction(@Validated @RequestBody Transaction transaction,
       @PathVariable("id") String id) {
     try {
-      // TODO
+      transaction = accountService.postTransaction(id, transaction);
       return new ResponseEntity<>(transaction, HttpStatus.CREATED);
     } catch (Exception e) {
       return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);

@@ -29,7 +29,7 @@ public class StickerAccountEntity implements Serializable {
   private StickerEntity sticker;
 
   // bi-directional many-to-one association to TransactionEntity
-  @ManyToOne
+  @ManyToOne()
   private TransactionEntity transaction;
 
   public StickerAccountEntity() {}
