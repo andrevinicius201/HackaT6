@@ -15,6 +15,8 @@ public class Sticker {
     this.piece = piece;
   }
 
+  public Sticker() {}
+
   public Long getId() {
     return id;
   }

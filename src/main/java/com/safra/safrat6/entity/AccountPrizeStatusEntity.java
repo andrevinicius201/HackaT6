@@ -12,60 +12,64 @@ import javax.persistence.Table;
 
 
 @Entity
-@Table(name="account_prize_status")
-@NamedQuery(name="AccountPrizeStatusEntity.findAll", query="SELECT a FROM AccountPrizeStatusEntity a")
+@Table(name = "account_prize_status")
+@NamedQuery(name = "AccountPrizeStatusEntity.findAll",
+    query = "SELECT a FROM AccountPrizeStatusEntity a")
 public class AccountPrizeStatusEntity implements Serializable {
-	private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	private Long id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.AUTO)
+  private Long id;
 
-	private String description;
+  private String description;
 
-	//bi-directional many-to-one association to AccountPrizeEntity
-	@OneToMany(mappedBy="accountPrizeStatus")
-	private List<AccountPrizeEntity> accountPrizes;
+  // bi-directional many-to-one association to AccountPrizeEntity
+  @OneToMany(mappedBy = "accountPrizeStatus")
+  private List<AccountPrizeEntity> accountPrizes;
 
-	public AccountPrizeStatusEntity() {
-	}
+  public AccountPrizeStatusEntity() {}
 
-	public Long getId() {
-		return this.id;
-	}
+  public AccountPrizeStatusEntity(Long id) {
+    this.id = id;
+  }
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+  public Long getId() {
+    return this.id;
+  }
 
-	public String getDescription() {
-		return this.description;
-	}
+  public void setId(Long id) {
+    this.id = id;
+  }
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
+  public String getDescription() {
+    return this.description;
+  }
 
-	public List<AccountPrizeEntity> getAccountPrizes() {
-		return this.accountPrizes;
-	}
+  public void setDescription(String description) {
+    this.description = description;
+  }
 
-	public void setAccountPrizes(List<AccountPrizeEntity> accountPrizes) {
-		this.accountPrizes = accountPrizes;
-	}
+  public List<AccountPrizeEntity> getAccountPrizes() {
+    return this.accountPrizes;
+  }
 
-	public AccountPrizeEntity addAccountPrize(AccountPrizeEntity accountPrize) {
-		getAccountPrizes().add(accountPrize);
-		accountPrize.setAccountPrizeStatus(this);
+  public void setAccountPrizes(List<AccountPrizeEntity> accountPrizes) {
+    this.accountPrizes = accountPrizes;
+  }
 
-		return accountPrize;
-	}
+  public AccountPrizeEntity addAccountPrize(AccountPrizeEntity accountPrize) {
+    getAccountPrizes().add(accountPrize);
+    accountPrize.setAccountPrizeStatus(this);
 
-	public AccountPrizeEntity removeAccountPrize(AccountPrizeEntity accountPrize) {
-		getAccountPrizes().remove(accountPrize);
-		accountPrize.setAccountPrizeStatus(null);
+    return accountPrize;
+  }
 
-		return accountPrize;
-	}
+  public AccountPrizeEntity removeAccountPrize(AccountPrizeEntity accountPrize) {
+    getAccountPrizes().remove(accountPrize);
+    accountPrize.setAccountPrizeStatus(null);
+
+    return accountPrize;
+  }
 
 }
