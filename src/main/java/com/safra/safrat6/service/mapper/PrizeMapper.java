@@ -16,6 +16,7 @@ public class PrizeMapper {
     entity.setPrice(prize.getValue());
     entity.setColumnsQuantity(prize.getColumnsQuantity());
     entity.setRowsQuantity(prize.getRowsQuantity());
+    entity.setStickerPrice(prize.getStickerPrice());
     return entity;
   }
 
@@ -31,6 +32,7 @@ public class PrizeMapper {
     prize.setDescription(entity.getDescription());
     prize.setImageUrl(entity.getImage());
     prize.setValue(entity.getPrice());
+    prize.setStickerPrice(entity.getStickerPrice());
     return prize;
   }
 }

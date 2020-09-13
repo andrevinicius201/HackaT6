@@ -2,6 +2,7 @@ package com.safra.safrat6.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -16,16 +17,19 @@ import com.safra.safrat6.model.Invite;
 import com.safra.safrat6.model.Prize;
 import com.safra.safrat6.model.Sticker;
 import com.safra.safrat6.model.Transaction;
+import com.safra.safrat6.service.AccountService;
 
 @RestController
 @RequestMapping("/accounts")
 public class AccountController {
-  
+
+  @Autowired
+  private AccountService accountService;
+
   @GetMapping(value = "/{id}")
   public ResponseEntity<Object> getAccount(@PathVariable("id") String id) {
     try {
-      Account account = new Account();
-      // TODO
+      Account account = accountService.getAccount(id);
       return new ResponseEntity<>(account, HttpStatus.OK);
     } catch (Exception e) {
       return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
@@ -33,9 +37,10 @@ public class AccountController {
   }
 
   @PostMapping(value = "/{id}/prizes")
-  public ResponseEntity<Object> postPrize(@Validated @RequestBody Prize prize, @PathVariable("id") String id) {
+  public ResponseEntity<Object> postPrize(@Validated @RequestBody Prize prize,
+      @PathVariable("id") String id) {
     try {
-      // TODO
+      prize = accountService.postPrize(id, prize);
       return new ResponseEntity<>(prize, HttpStatus.CREATED);
     } catch (Exception e) {
       return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
@@ -43,9 +48,10 @@ public class AccountController {
   }
 
   @PostMapping(value = "/{id}/transactions")
-  public ResponseEntity<Object> postTransaction(@Validated @RequestBody Transaction transaction, @PathVariable("id") String id) {
+  public ResponseEntity<Object> postTransaction(@Validated @RequestBody Transaction transaction,
+      @PathVariable("id") String id) {
     try {
-      // TODO
+      transaction = accountService.postTransaction(id, transaction);
       return new ResponseEntity<>(transaction, HttpStatus.CREATED);
     } catch (Exception e) {
       return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
@@ -55,8 +61,7 @@ public class AccountController {
   @GetMapping(value = "/{id}/stickers")
   public ResponseEntity<Object> getStickers(@PathVariable("id") String id) {
     try {
-      List<Sticker> stickers = new ArrayList<>();
-      // TODO
+      List<Sticker> stickers = accountService.getStickers(id);
       return new ResponseEntity<>(stickers, HttpStatus.OK);
     } catch (Exception e) {
       return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
@@ -64,7 +69,8 @@ public class AccountController {
   }
 
   @PostMapping(value = "/{id}/invites")
-  public ResponseEntity<Object> postInvite(@Validated @RequestBody Invite invite, @PathVariable("id") String id) {
+  public ResponseEntity<Object> postInvite(@Validated @RequestBody Invite invite,
+      @PathVariable("id") String id) {
     try {
       // TODO
       return new ResponseEntity<>(invite, HttpStatus.CREATED);

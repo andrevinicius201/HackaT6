@@ -30,6 +30,9 @@ public class AccountPrizeEntity implements Serializable {
   @ManyToOne
   private AccountEntity account;
 
+  @ManyToOne
+  private PrizeEntity prize;
+
   public AccountPrizeEntity() {}
 
   public Long getId() {
@@ -54,6 +57,14 @@ public class AccountPrizeEntity implements Serializable {
 
   public void setAccount(AccountEntity account) {
     this.account = account;
+  }
+
+  public PrizeEntity getPrize() {
+    return prize;
+  }
+
+  public void setPrize(PrizeEntity prize) {
+    this.prize = prize;
   }
 
 }

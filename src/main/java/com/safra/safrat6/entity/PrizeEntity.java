@@ -36,9 +36,16 @@ public class PrizeEntity implements Serializable {
   @Column(name = "rows_quantity")
   private Integer rowsQuantity;
 
+  @Column(name = "sticker_price")
+  private BigDecimal stickerPrice;
+
   // bi-directional many-to-one association to StickerEntity
   @OneToMany(mappedBy = "prize", cascade = CascadeType.ALL)
   private List<StickerEntity> stickers;
+
+  // bi-directional many-to-one association to AccountPrizeEntity
+  @OneToMany(mappedBy = "prize", cascade = CascadeType.ALL)
+  private List<AccountPrizeEntity> accountPrizes;
 
   public PrizeEntity() {}
 
@@ -114,6 +121,22 @@ public class PrizeEntity implements Serializable {
 
   public void setRowsQuantity(Integer rowsQuantity) {
     this.rowsQuantity = rowsQuantity;
+  }
+
+  public List<AccountPrizeEntity> getAccountPrizes() {
+    return accountPrizes;
+  }
+
+  public void setAccountPrizes(List<AccountPrizeEntity> accountPrizes) {
+    this.accountPrizes = accountPrizes;
+  }
+
+  public BigDecimal getStickerPrice() {
+    return stickerPrice;
+  }
+
+  public void setStickerPrice(BigDecimal stickerPrice) {
+    this.stickerPrice = stickerPrice;
   }
 
 }
