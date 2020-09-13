@@ -40,6 +40,10 @@ public class PrizeEntity implements Serializable {
   @OneToMany(mappedBy = "prize", cascade = CascadeType.ALL)
   private List<StickerEntity> stickers;
 
+  // bi-directional many-to-one association to AccountPrizeEntity
+  @OneToMany(mappedBy = "prize", cascade = CascadeType.ALL)
+  private List<AccountPrizeEntity> accountPrizes;
+
   public PrizeEntity() {}
 
   public PrizeEntity(Long id) {
@@ -114,6 +118,14 @@ public class PrizeEntity implements Serializable {
 
   public void setRowsQuantity(Integer rowsQuantity) {
     this.rowsQuantity = rowsQuantity;
+  }
+
+  public List<AccountPrizeEntity> getAccountPrizes() {
+    return accountPrizes;
+  }
+
+  public void setAccountPrizes(List<AccountPrizeEntity> accountPrizes) {
+    this.accountPrizes = accountPrizes;
   }
 
 }
