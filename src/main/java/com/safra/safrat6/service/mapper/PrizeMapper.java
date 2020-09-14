@@ -28,7 +28,7 @@ public class PrizeMapper {
     Prize prize = new Prize();
     prize.setId(entity.getId());
     prize.setColumnsQuantity(entity.getColumnsQuantity());
-    prize.setRowsQuantity(entity.getColumnsQuantity());
+    prize.setRowsQuantity(entity.getRowsQuantity());
     prize.setDescription(entity.getDescription());
     prize.setImageUrl(entity.getImage());
     prize.setValue(entity.getPrice());
