@@ -132,10 +132,10 @@ public class AccountService {
 
     if (distinctStickers.size() == prizeEntity.getColumnsQuantity()
         * prizeEntity.getRowsQuantity()) {
-      AccountPrizeEntity accountPrizeEntity =
-          accountPrizeRepository.findByAccountAndPrize(accountEntity, prizeEntity);
-      accountPrizeEntity.setAccountPrizeStatus(new AccountPrizeStatusEntity(2L));
-      accountPrizeRepository.save(accountPrizeEntity);
+//      AccountPrizeEntity accountPrizeEntity =
+//          accountPrizeRepository.findByAccountAndPrize(accountEntity, prizeEntity);
+//      accountPrizeEntity.setAccountPrizeStatus(new AccountPrizeStatusEntity(2L));
+//      accountPrizeRepository.save(accountPrizeEntity);
       // TODO: notificate winner via firebase
     }
     return transaction;
