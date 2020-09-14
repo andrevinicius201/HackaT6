@@ -19,6 +19,12 @@ Ilustração:
 ![Alt text](arquitetura-safra-collection.png?raw=true "Title")
 
 
+Modelo Entidade Relacionamento:
+
+
+![Alt text](mer.PNG?raw=true "Title")
+
+
 A escolha da linguagem de desenvolvimento (Java com Spring Boot) foi devido à maior facilidade de encontrar desenvolvedores para esta tecnologia.
 
 O banco de dados PostgreSQL possui uma integração com georeferenciamento, que, apesar de não estar no roadmap atual, pode ser interessante no futuro.
